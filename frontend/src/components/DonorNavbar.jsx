@@ -1,10 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 
 const DonorNavbar = ({ account, handleLogout }) => {
-  const navigate = useNavigate();
-
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
