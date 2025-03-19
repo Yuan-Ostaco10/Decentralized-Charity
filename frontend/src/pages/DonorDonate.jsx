@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import DonationJSON from "../DonationABI.json";
-import { Container, Form, Button, Spinner, Card, Alert } from "react-bootstrap";
+import { Container, Form, Button, Spinner, Card, Alert, Row, Col, Badge } from "react-bootstrap";
 import DonorNavbar from "../components/DonorNavbar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 
@@ -151,6 +151,13 @@ const DonorDonate = () => {
     }
   };
 
+  // Handle direct donation from featured charities
+  const handleDirectDonation = (orgName) => {
+    setSelectedOrg(orgName);
+    // Scroll to the donation form
+    document.getElementById("donationForm").scrollIntoView({ behavior: "smooth" });
+  };
+
   // Prevent rendering while checking organization status
   if (isOrg === null) {
     return (
@@ -164,9 +171,9 @@ const DonorDonate = () => {
   return (
     <>
       <DonorNavbar account={account} handleLogout={handleLogout} />
-      <Container className="mt-5">
-        <h1 className="text-center mb-4">Make a Donation</h1>
-        <p className="text-center mb-4">Support your favorite organization.</p>
+      <Container className="py-5">
+        <h1 className="text-center mb-1">Make a Donation</h1>
+        <p className="text-center mb-5">Support your favorite organization with blockchain-based donations</p>
 
         {/* Success Message */}
         {successMessage && (
@@ -175,51 +182,173 @@ const DonorDonate = () => {
           </Alert>
         )}
 
-        {/* Donation Form */}
-        <Card className="p-4 shadow-sm mb-4 mx-auto" style={{ maxWidth: "600px" }}>
-          <h3 className="mb-3 text-center">Donation Details</h3>
-          <Form onSubmit={handleDonate}>
-            <Form.Group>
-              <Form.Label>Select Organization:</Form.Label>
-              <Form.Select 
-                onChange={(e) => setSelectedOrg(e.target.value)} 
-                value={selectedOrg}
-                required
-              >
-                <option value="">-- Select Organization --</option>
-                {organizations.map((org, index) => (
-                  <option key={index} value={org}>{org}</option>
-                ))}
-              </Form.Select>
-            </Form.Group>
+        <Row className="g-4">
+          {/* Donation Form Column */}
+          <Col lg={5} className="mb-4">
+            <Card className="shadow-sm h-100" id="donationForm">
+              <Card.Header className="bg-primary text-white py-3">
+                <h3 className="m-0 text-center">Donation Details</h3>
+              </Card.Header>
+              <Card.Body className="p-4">
+                <Form onSubmit={handleDonate}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Select Organization:</Form.Label>
+                    <Form.Select 
+                      onChange={(e) => setSelectedOrg(e.target.value)} 
+                      value={selectedOrg}
+                      required
+                      className="form-control-lg"
+                    >
+                      <option value="">-- Select Organization --</option>
+                      {organizations.map((org, index) => (
+                        <option key={index} value={org}>{org}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
 
-            <Form.Group className="mt-3">
-              <Form.Label>Enter Donation Amount (ETH):</Form.Label>
-              <Form.Control
-                type="number"
-                value={donationAmount}
-                onChange={(e) => setDonationAmount(e.target.value)}
-                placeholder="Enter amount"
-                min="0.001"
-                step="0.001"
-                required
-              />
-              <Form.Text className="text-muted">
-                You will receive {donationAmount ? parseFloat(donationAmount) * 1000 : 0} DTK tokens for this donation.
-              </Form.Text>
-            </Form.Group>
+                  <Form.Group className="mb-4">
+                    <Form.Label>Enter Donation Amount (ETH):</Form.Label>
+                    <Form.Control
+                      type="number"
+                      value={donationAmount}
+                      onChange={(e) => setDonationAmount(e.target.value)}
+                      placeholder="Enter amount"
+                      min="0.001"
+                      step="0.001"
+                      required
+                      className="form-control-lg"
+                    />
+                    <Form.Text className="text-muted">
+                      You will receive {donationAmount ? parseFloat(donationAmount) * 1000 : 0} DTK tokens for this donation.
+                    </Form.Text>
+                  </Form.Group>
 
-            <div className="d-flex justify-content-between mt-4">
-              <Button variant="secondary" onClick={() => navigate("/donor-dashboard")}>
-                Back to Dashboard
-              </Button>
-              <Button type="submit" variant="primary" disabled={isLoading}>
-                {isLoading ? <Spinner animation="border" size="sm" /> : "Donate Now"}
-              </Button>
-            </div>
-          </Form>
-        </Card>
+                  <div className="d-grid gap-2 mt-4">
+                    <Button type="submit" variant="primary" size="lg" disabled={isLoading}>
+                      {isLoading ? <><Spinner animation="border" size="sm" /> Processing...</> : "Donate Now"}
+                    </Button>
+                    <Button variant="outline-secondary" onClick={() => navigate("/donor-dashboard")}>
+                      Back to Dashboard
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          {/* Featured Charities Column */}
+          <Col lg={7}>
+            <Card className="shadow-sm h-100">
+              <Card.Header className="bg-primary text-white py-3">
+                <h3 className="m-0 text-center">Featured Charities</h3>
+              </Card.Header>
+              <Card.Body className="p-3" style={{ maxHeight: "600px", overflowY: "auto" }}>
+                <Row className="g-3">
+                  <Col md={12}>
+                    <Card className="border-0 shadow-sm">
+                      <Row className="g-0">
+                        <Col md={4} className="charity-img-container">
+                          <Card.Img 
+                            src="/charity1.jpg" 
+                            alt="Global Education Initiative" 
+                            style={{ height: "100%", objectFit: "cover" }}
+                          />
+                        </Col>
+                        <Col md={8}>
+                          <Card.Body>
+                            <div className="d-flex justify-content-between align-items-start mb-2">
+                              <Card.Title>Global Education Initiative</Card.Title>
+                              <Badge bg="success">Verified</Badge>
+                            </div>
+                            <Card.Text>
+                              Providing educational resources and building schools in underserved communities across 27 countries.
+                            </Card.Text>
+                            <small className="text-muted d-block mb-3">
+                              Address: 0x5CfE6ef4E8cff3b918224dAC699B20e383370B41
+                            </small>
+                          </Card.Body>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                  
+                  <Col md={12}>
+                    <Card className="border-0 shadow-sm">
+                      <Row className="g-0">
+                        <Col md={4} className="charity-img-container">
+                          <Card.Img 
+                            src="/charity2.jpg" 
+                            alt="Ocean Conservation Alliance" 
+                            style={{ height: "100%", objectFit: "cover" }}
+                          />
+                        </Col>
+                        <Col md={8}>
+                          <Card.Body>
+                            <div className="d-flex justify-content-between align-items-start mb-2">
+                              <Card.Title>Ocean Conservation Alliance</Card.Title>
+                              <Badge bg="info">Top Rated</Badge>
+                            </div>
+                            <Card.Text>
+                              Working to protect marine ecosystems through cleanup initiatives, research, and sustainable fishing advocacy.
+                            </Card.Text>
+                            <small className="text-muted d-block mb-3">
+                              Address: 0x8929E3230FebF6545E147957981045b13A2c5b54
+                            </small>
+                            
+                          </Card.Body>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                  
+                  <Col md={12}>
+                    <Card className="border-0 shadow-sm">
+                      <Row className="g-0">
+                        <Col md={4} className="charity-img-container">
+                          <Card.Img 
+                            src="/charity3.jpg" 
+                            alt="Disaster Relief Network" 
+                            style={{ height: "100%", objectFit: "cover" }}
+                          />
+                        </Col>
+                        <Col md={8}>
+                          <Card.Body>
+                            <div className="d-flex justify-content-between align-items-start mb-2">
+                              <Card.Title>Disaster Relief Network</Card.Title>
+                              <Badge bg="danger">Urgent</Badge>
+                            </div>
+                            <Card.Text>
+                              Providing emergency aid, shelter, and medical assistance to communities affected by natural disasters.
+                            </Card.Text>
+                            <small className="text-muted d-block mb-3">
+                              Address: 0xDAbC4DB9C9c66b2D6de8dFD53036c0f97334903B
+                            </small>
+                           
+                          </Card.Body>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
+
+      {/* Add some custom CSS for the charity image containers */}
+      <style jsx="true">{`
+        .charity-img-container {
+          max-height: 200px;
+          overflow: hidden;
+        }
+        
+        @media (max-width: 767px) {
+          .charity-img-container {
+            height: 200px;
+          }
+        }
+      `}</style>
     </>
   );
 };

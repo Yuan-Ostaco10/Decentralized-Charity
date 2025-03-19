@@ -109,10 +109,9 @@ const Login = () => {
             <Card.Body className="p-4">
               <div className="text-center mb-4">
                 <img 
-                  src="/api/placeholder/100/100" 
+                  src="/donation.png" 
                   alt="Charity Logo" 
-                  className="mb-3" 
-                  style={{ borderRadius: '50%' }} 
+                  className="mb-3 w-25"  
                 />
                 <h3 className="mb-3">Welcome Back</h3>
                 <p className="text-muted">Connect your wallet to continue</p>

@@ -43,23 +43,24 @@ const HomePage = () => {
             <Col lg={6} className="mb-4 mb-lg-0">
               <div className="py-3">
                 <Badge bg="light" text="dark" className="mb-2">Blockchain Powered</Badge>
-                <h1 className="display-4 fw-bold mb-3">Transparent Charity Giving</h1>
-                <p className="lead mb-4">
-                  Track every donation in real-time with our blockchain-based platform. 
-                  See exactly how your contribution makes an impact.
-                </p>
+                <h1 className="display-4 fw-bold mb-3 text-start">Transparent Charity Giving</h1>
+                  <p className="lead mb-4 text-start">
+                    Track every donation in real-time with our blockchain-based platform. 
+                    See exactly how your contribution makes an impact.
+                  </p>
+
                 <div className="d-flex flex-wrap gap-2">
                   <Button as={Link} to="/login" variant="light" size="lg">Get Started</Button>
-                  <Button variant="outline-light" size="lg">Learn More</Button>
                 </div>
               </div>
             </Col>
             <Col lg={6}>
-              <img 
-                src="/api/placeholder/600/400" 
-                alt="Blockchain Charity" 
-                className="img-fluid rounded shadow-lg" 
-              />
+                        <img 
+              src="/donation.png" 
+              alt="Blockchain Charity" 
+              className="img-fluid rounded w-75"
+            />
+
             </Col>
           </Row>
         </Container>
@@ -137,11 +138,11 @@ const HomePage = () => {
       </div>
 
       {/* How It Works */}
-      <Container className="mt-5" id="how-it-works">
+      <Container className="mt-5 mb-5" id="how-it-works">
         <h2 className="text-center mb-5">How It Works</h2>
         <Row className="align-items-center mb-5">
           <Col lg={6} className="mb-4 mb-lg-0">
-            <img src="/api/placeholder/500/300" alt="Connect Wallet" className="img-fluid rounded shadow" />
+            <img src="/metamask.JPG" alt="Connect Wallet" className="img-fluid rounded shadow" />
           </Col>
           <Col lg={6}>
             <h3>1. Connect Your Wallet</h3>
@@ -162,7 +163,7 @@ const HomePage = () => {
         
         <Row className="align-items-center mb-5 flex-lg-row-reverse">
           <Col lg={6} className="mb-4 mb-lg-0">
-            <img src="/api/placeholder/500/300" alt="Choose Charity" className="img-fluid rounded shadow" />
+            <img src="/charities.JPG" alt="Choose Charity" className="img-fluid rounded shadow" />
           </Col>
           <Col lg={6}>
             <h3>2. Choose a Charity</h3>
@@ -183,7 +184,7 @@ const HomePage = () => {
         
         <Row className="align-items-center">
           <Col lg={6} className="mb-4 mb-lg-0">
-            <img src="/api/placeholder/500/300" alt="Track Impact" className="img-fluid rounded shadow" />
+            <img src="/donate.JPG" alt="Track Impact" className="img-fluid rounded shadow" />
           </Col>
           <Col lg={6}>
             <h3>3. Make a Donation & Track Impact</h3>
@@ -205,34 +206,76 @@ const HomePage = () => {
 
       {/* Featured Charities */}
       <div className="bg-light py-5" id="charities">
-        <Container>
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="mb-0">Featured Charities</h2>
-          </div>
-          <Row>
-            {[1, 2, 3].map((item) => (
-              <Col md={4} key={item} className="mb-4">
-                <Card className="h-100 border-0 shadow-sm">
-                  <Card.Img variant="top" src={`/api/placeholder/400/200`} alt={`Charity ${item}`} />
-                  <Card.Body>
-                    <Badge bg="success" className="mb-2">Verified</Badge>
-                    <Card.Title>Charity Organization {item}</Card.Title>
-                    <Card.Text>
-                      Supporting education, healthcare, and community development in underserved regions.
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer className="bg-white border-0">
-                    <div className="d-flex justify-content-between align-items-center">
-                      <small className="text-muted">Projects: 12</small>
-                      <Button variant="primary" size="sm">Donate Now</Button>
-                    </div>
-                  </Card.Footer>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </div>
+  <Container>
+    <div className="d-flex justify-content-between align-items-center mb-4">
+      <h2 className="mb-0">Featured Charities</h2>
+    </div>
+    <Row>
+      <Col md={4} className="mb-4">
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Img variant="top" src={`/charity1.jpg`} alt="Global Education Initiative" />
+          <Card.Body>
+            <Badge bg="success" className="mb-2">Verified</Badge>
+            <Card.Title>Global Education Initiative</Card.Title>
+            <Card.Text>
+              Providing educational resources and building schools in underserved communities across 27 countries.
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer className="bg-white border-0">
+            <div className="d-flex justify-content-between align-items-center">
+              <small className="text-muted">Projects: 34</small>
+              <Link to="/login">
+                <Button variant="primary" size="sm">Donate Now</Button>
+              </Link>
+            </div>
+          </Card.Footer>
+        </Card>
+      </Col>
+      
+      <Col md={4} className="mb-4">
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Img variant="top" src={`/charity2.jpg`} alt="Ocean Conservation Alliance" />
+          <Card.Body>
+            <Badge bg="info" className="mb-2">Top Rated</Badge>
+            <Card.Title>Ocean Conservation Alliance</Card.Title>
+            <Card.Text>
+              Working to protect marine ecosystems through cleanup initiatives, research, and sustainable fishing advocacy.
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer className="bg-white border-0">
+            <div className="d-flex justify-content-between align-items-center">
+              <small className="text-muted">Projects: 18</small>
+              <Link to="/login">
+                <Button variant="primary" size="sm">Donate Now</Button>
+              </Link>
+            </div>
+          </Card.Footer>
+        </Card>
+      </Col>
+      
+      <Col md={4} className="mb-4">
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Img variant="top" src={`/charity3.jpg`} alt="Disaster Relief Network" />
+          <Card.Body>
+            <Badge bg="danger" className="mb-2">Urgent</Badge>
+            <Card.Title>Disaster Relief Network</Card.Title>
+            <Card.Text>
+              Providing emergency aid, shelter, and medical assistance to communities affected by natural disasters.
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer className="bg-white border-0">
+            <div className="d-flex justify-content-between align-items-center">
+              <small className="text-muted">Projects: 23</small>
+              <Link to="/login">
+                <Button variant="primary" size="sm">Donate Now</Button>
+              </Link>
+            </div>
+          </Card.Footer>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
+</div>
 
       {/* Testimonials */}
       <Container className="py-5">

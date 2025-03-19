@@ -168,7 +168,7 @@ const Dashboard = () => {
         <Card className="shadow-sm border-0">
           <Card.Header className="bg-white border-0 pt-4 px-4">
             <h3>Donation History</h3>
-            <p className="text-muted mb-0">Complete record of your organization's donations</p>
+            <p className="text-muted mb-0">Complete record of your organization's received donations</p>
           </Card.Header>
           <Card.Body className="p-4">
             {donations.length > 0 ? (
