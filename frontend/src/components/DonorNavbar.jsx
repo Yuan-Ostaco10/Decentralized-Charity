@@ -10,13 +10,13 @@ const DonorNavbar = ({ account, handleLogout }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/donor-donate">Donate</Nav.Link>
             <Nav.Link as={Link} to="/donor-dashboard">Dashboard</Nav.Link>
-            <Nav.Link as={Link} to="/donate">Transaction History</Nav.Link>
           </Nav>
           <span className="text-light mx-3">
             <strong>Wallet:</strong> {account ? `${account.slice(0, 6)}...${account.slice(-4)}` : "Not Connected"}
           </span>
-          <Button variant="danger" onClick={handleLogout}>Logout</Button>
+          <Button variant="danger" onClick={handleLogout}>Logout</Button> {/* ✅ Logout button works */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

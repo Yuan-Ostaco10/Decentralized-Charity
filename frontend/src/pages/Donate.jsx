@@ -3,6 +3,8 @@ import Web3 from "web3";
 import DonationJSON from "../DonationABI.json";
 import { Container, Button, Form, Card } from "react-bootstrap";
 import NavigationBar from "../components/Navbar"; // Import Navbar
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
 
 const CONTRACT_ADDRESS = "0x46C079d1388e79278A22689704608ffF8199b82E";
 const DonationABI = DonationJSON.abi;

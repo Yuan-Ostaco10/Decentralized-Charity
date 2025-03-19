@@ -4,6 +4,8 @@ import DonationJSON from "../DonationABI.json";
 import { Container, Row, Col, Card, Button, Form, Alert, Spinner } from "react-bootstrap";
 import DashboardNavbar from "../components/DashboardNavbar";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
 
 const CONTRACT_ADDRESS = "0x46C079d1388e79278A22689704608ffF8199b82E"; // Replace after redeploying
 const DonationABI = DonationJSON.abi;

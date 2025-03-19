@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Withdraw from "./pages/Withdraw";
 import DonorDashboard from "./pages/DonorDashboard";
+import DonorDonate from "./pages/DonorDonate";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/donor-dashboard" element={<DonorDashboard/>} />
+        <Route path="/donor-donate" element={<DonorDonate/>} />
         
       </Routes>
     </Router>

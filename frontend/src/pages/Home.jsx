@@ -14,7 +14,7 @@ const Home = () => {
         </p>
         <hr className="my-4" />
         <p>Every donation is recorded on the blockchain, ensuring transparency and accountability.</p>
-        <Link to="/donate">
+        <Link to="/donor-donate">
           <Button variant="primary" size="lg">Start Donating</Button>
         </Link>
       </Container>

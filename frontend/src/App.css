@@ -40,3 +40,99 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* General Styles */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Centered Heading */
+h1 {
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+/* Dashboard Cards */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card h4 {
+  color: #495057;
+  font-weight: 600;
+}
+
+.card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+/* Donation Form & Rewards */
+.form-control, .form-select {
+  border-radius: 8px;
+}
+
+button {
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+button:disabled {
+  background-color: #adb5bd;
+  border: none;
+}
+
+/* Spinner */
+.spinner-border {
+  color: #007bff;
+}
+
+/* Donation Table */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Alerts */
+.alert {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+}
