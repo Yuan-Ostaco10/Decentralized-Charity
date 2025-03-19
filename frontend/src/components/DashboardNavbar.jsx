@@ -12,8 +12,8 @@ const DashboardNavbar = ({ account, handleLogout }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
-            <Nav.Link as={Link} to="/withdraw">Withdraw</Nav.Link>
+          <Nav.Link as={Link} to="/withdraw">Withdraw</Nav.Link>
+          <Nav.Link as={Link} to="/dashboard">Donation History</Nav.Link>
           </Nav>
           <span className="text-light mx-3"><strong>Wallet:</strong> {account.slice(0, 6)}...{account.slice(-4)}</span>
           <Button variant="danger" onClick={handleLogout}>Logout</Button>

@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Web3 from "web3";
 import DonationJSON from "../DonationABI.json";
-import { Container, Button, Alert, Spinner } from "react-bootstrap";
+import { 
+  Container, 
+  Row, 
+  Col, 
+  Card, 
+  Button, 
+  Alert, 
+  Spinner,
+  Form 
+} from "react-bootstrap";
 
 const CONTRACT_ADDRESS = "0x46C079d1388e79278A22689704608ffF8199b82E";
 const DonationABI = DonationJSON.abi;
@@ -89,29 +98,98 @@ const Login = () => {
   };
 
   return (
-    <Container className="text-center mt-5">
-      <h1 className="mb-4">Login to Decentralized Charity</h1>
-
-      {account ? (
-        <>
-          <Alert variant="success">
-            Connected as: <strong>{account}</strong> ({checkingRole ? "Checking..." : role})
-          </Alert>
-          {checkingRole ? (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          ) : (
-            <Button onClick={handleLogin} className="btn btn-primary">
-              Continue as {role}
-            </Button>
-          )}
-        </>
-      ) : (
-        <Button onClick={connectWallet} className="btn btn-primary" disabled={loading}>
-          {loading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Connect Wallet"}
-        </Button>
-      )}
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <Card className="shadow">
+            <Card.Header className="bg-primary text-white text-center py-3">
+              <h2 className="fw-bold mb-0">Decentralized Charity</h2>
+            </Card.Header>
+            
+            <Card.Body className="p-4">
+              <div className="text-center mb-4">
+                <img 
+                  src="/api/placeholder/100/100" 
+                  alt="Charity Logo" 
+                  className="mb-3" 
+                  style={{ borderRadius: '50%' }} 
+                />
+                <h3 className="mb-3">Welcome Back</h3>
+                <p className="text-muted">Connect your wallet to continue</p>
+              </div>
+              
+              {account ? (
+                <div className="text-center">
+                  <Alert variant="success" className="d-flex align-items-center justify-content-center">
+                    <div className="d-flex align-items-center">
+                      <div className="bg-success rounded-circle me-2" style={{ width: '10px', height: '10px' }}></div>
+                      <span>
+                        Connected: <strong className="text-break">{account}</strong>
+                      </span>
+                    </div>
+                  </Alert>
+                  
+                  <div className="mt-3 mb-3">
+                    {checkingRole ? (
+                      <div className="d-flex justify-content-center align-items-center">
+                        <Spinner animation="border" variant="primary" size="sm" className="me-2" />
+                        <span>Detecting account type...</span>
+                      </div>
+                    ) : (
+                      <Alert variant="info">
+                        Account Type: <strong>{role}</strong>
+                      </Alert>
+                    )}
+                  </div>
+                  
+                  {!checkingRole && (
+                    <Button 
+                      onClick={handleLogin} 
+                      variant="primary" 
+                      size="lg" 
+                      className="w-100 mt-3"
+                    >
+                      Continue as {role}
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center">
+                  <Button 
+                    onClick={connectWallet} 
+                    variant="primary" 
+                    size="lg" 
+                    className="w-100" 
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
+                        Connecting...
+                      </>
+                    ) : (
+                      <>Connect MetaMask Wallet</>
+                    )}
+                  </Button>
+                  
+                  <div className="mt-3 text-center">
+                    <small className="text-muted">
+                      Don't have MetaMask installed?{" "}
+                      <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer">
+                        Get MetaMask
+                      </a>
+                    </small>
+                  </div>
+                </div>
+              )}
+            </Card.Body>
+            
+            <Card.Footer className="text-center text-muted py-3 bg-light">
+              <small>Secure, transparent and decentralized charitable giving</small>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 };
